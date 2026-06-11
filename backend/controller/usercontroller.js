@@ -1,37 +1,49 @@
-const user = require('../model/user')
+const User = require('../model/user')
 
 exports.getalluser = async (req,res) => {
     try {
-        const user = await user.find()
-        res.status(200).json(user)
+        const users = await User.find()
+        res.status(200).json(users)
     } catch (error) {
-    res.status(400).json({error: error.message})
+        res.status(400).json({error: error.message})
     }
 }
+
 exports.getuserbyid = async (req,res) => {
     const {id} = req.params
     try {
-     const user = await user.findById(id)
-   res.status(200).json(user)
-    } catch (error) {
-       res.status(500).json({error:error.message})   
-    }
-}
-exports.createuser =async (req,res) => {
-    const {username,email,password} =req.body
-    try {
-        const user = await user.create({username,email,password})
+        const user = await User.findById(id)
         res.status(200).json(user)
     } catch (error) {
         res.status(500).json({error:error.message})
     }
 }
-exports.userupdate = async (req,res) => {
-const {id} = req.params
-const {username,email,password} = req.body
+
+exports.createuser = async (req,res) => {
+    const {username,email,password} = req.body
     try {
-        const user = await user.findoneAndReplace(id,req.body,{new:true})
-        res.status(200).json(user)
+        const newUser = await User.create({
+            username,
+            email,
+            password
+        })
+        res.status(200).json(newUser)
+    } catch (error) {
+        res.status(500).json({error:error.message})
+    }
+}
+
+exports.userupdate = async (req,res) => {
+    const {id} = req.params
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true }
+        )
+
+        res.status(200).json(updatedUser)
     } catch (error) {
         res.status(500).json({error:error.message})
     }
@@ -39,9 +51,10 @@ const {username,email,password} = req.body
 
 exports.deleteuser = async (req,res) => {
     const {id} = req.params
+
     try {
-        const user = await user.findByIdAndDelete(id)
-        res.status(200).json(user)
+        const deletedUser = await User.findByIdAndDelete(id)
+        res.status(200).json(deletedUser)
     } catch (error) {
         res.status(500).json({error:error.message})
     }

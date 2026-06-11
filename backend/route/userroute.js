@@ -1,7 +1,6 @@
 const express = require('express')
 const { getalluser, getuserbyid, createuser, userupdate, deleteuser } = require('../controller/usercontroller')
 const router = express.Router()
-
 router.get('/', getalluser)
 router.get('/:id', getuserbyid)
 router.post('/', createuser)
