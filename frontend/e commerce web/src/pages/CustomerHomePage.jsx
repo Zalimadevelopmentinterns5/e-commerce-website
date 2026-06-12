@@ -1,43 +1,6 @@
+import { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar'
-
-const PRODUCTS = [
-  {
-    id: 1,
-    name: "Precision Watch S1",
-    price: "$129.99",
-    rating: 4,
-    reviews: 128,
-    badge: "NEW",
-    img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
-  },
-  {
-    id: 2,
-    name: "Acoustic Pro Max",
-    price: "$249.99",
-    rating: 5,
-    reviews: 94,
-    badge: null,
-    img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
-  },
-  {
-    id: 3,
-    name: "Velocity Elite Runner",
-    price: "$189.99",
-    rating: 4,
-    reviews: 56,
-    badge: null,
-    img: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400",
-  },
-  {
-    id: 4,
-    name: "Retro Lens Cam",
-    price: "$299.99",
-    rating: 5,
-    reviews: 212,
-    badge: null,
-    img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400",
-  },
-]
+import { getProducts } from '../../services/api'
 
 function ProductCard({ product }) {
   return (
@@ -46,7 +9,7 @@ function ProductCard({ product }) {
                     transition-all duration-300">
       <div className="relative aspect-square overflow-hidden bg-gray-100">
         <img
-          src={product.img}
+          src={product.image || "https://via.placeholder.com/400"}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105
                      transition-transform duration-500"
@@ -60,12 +23,6 @@ function ProductCard({ product }) {
             Add to Cart
           </button>
         </div>
-        {product.badge && (
-          <span className="absolute top-3 right-3 bg-indigo-600 text-white
-                           text-[10px] font-bold px-2 py-1 rounded">
-            {product.badge}
-          </span>
-        )}
       </div>
       <div className="p-4">
         <div className="flex justify-between items-start mb-1">
@@ -74,26 +31,36 @@ function ProductCard({ product }) {
           </h4>
           <span className="bg-gray-100 text-gray-700 px-2 py-0.5
                            rounded text-xs font-bold ml-2 shrink-0">
-            {product.price}
+            ₹{product.price}
           </span>
         </div>
-        <div className="flex items-center gap-1">
-          {[...Array(5)].map((_, i) => (
-            <span key={i} className={`text-sm
-              ${i < product.rating ? 'text-amber-400' : 'text-gray-300'}`}>
-              ★
-            </span>
-          ))}
-          <span className="text-gray-400 text-xs ml-1">
-            ({product.reviews})
-          </span>
-        </div>
+        {product.discountprice && (
+          <p className="text-xs text-green-600 font-medium mt-1">
+            ₹{product.discountprice} after discount
+          </p>
+        )}
+        <p className="text-xs text-gray-400 mt-1">{product.category}</p>
       </div>
     </div>
   )
 }
 
 export default function CustomerHomePage() {
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    getProducts()
+      .then(data => {
+        setProducts(data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error(err)
+        setLoading(false)
+      })
+  }, [])
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
@@ -148,9 +115,27 @@ export default function CustomerHomePage() {
             View All Products →
           </button>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}
-        </div>
+
+        {/* Loading state */}
+        {loading ? (
+          <div className="grid grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className="h-64 bg-gray-200 rounded-xl
+                                      animate-pulse" />
+            ))}
+          </div>
+        ) : products.length === 0 ? (
+          <div className="text-center py-20 text-gray-400">
+            No products found. Make sure backend is running on port 5000.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2
+                          lg:grid-cols-4 gap-6">
+            {products.map(product => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Footer */}
