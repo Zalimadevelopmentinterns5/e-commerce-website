@@ -1,10 +1,10 @@
+console.log("ORDER ROUTE LOADED")
 const express = require('express')
-const { getallproduct, getproductbyid, createproduct, productupdate, deleteproduct } = require('../controller/productcontroller')
+const {getallorder, getorderbyid, createorder, orderupdate, deleteorder } = require('../controller/ordercontroller')
 const router = express.Router()
-router.get('/', getallproduct)
-router.get('/:id', getproductbyid)
-router.post('/', createproduct)
-router.put('/:id', productupdate)
-router.delete('/:id', deleteproduct)
+router.get('/', getallorder)
+router.get('/:id', getorderbyid)
+router.post('/', createorder)
+router.put('/:id', orderupdate)
+router.delete('/:id', deleteorder)
 module.exports = router
-
