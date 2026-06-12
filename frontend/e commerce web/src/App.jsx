@@ -1,12 +1,13 @@
-
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import CustomerHomePage from './pages/CustomerHomePage'
 
 function App() {
-
   return (
-    <>
-      hello from e commerce app
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CustomerHomePage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
