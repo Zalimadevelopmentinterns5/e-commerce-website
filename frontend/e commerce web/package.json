@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "e-commerce-web",
   "private": true,
   "version": "0.0.0",
@@ -11,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^1.18.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.17.0"
@@ -29,14 +27,5 @@
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19",
     "vite": "^8.0.12"
-=======
-  "devDependencies": {
-    "autoprefixer": "^10.5.0",
-    "postcss": "^8.5.15",
-    "tailwindcss": "^4.3.0"
-  },
-  "dependencies": {
-    "react-router-dom": "^7.17.0"
->>>>>>> 9b58f64b8e675548a9c0b440ad40715f8240848f
   }
 }
