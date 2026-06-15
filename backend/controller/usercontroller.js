@@ -20,12 +20,13 @@ exports.getuserbyid = async (req,res) => {
 }
 
 exports.createuser = async (req,res) => {
-    const {username,email,password} = req.body
+    const {username,email,password,image} = req.body
     try {
         const newUser = await User.create({
             username,
             email,
-            password
+            password,
+            image: req.file ? `/uploads/users/${req.file.filename}` : null
         })
         res.status(200).json(newUser)
     } catch (error) {

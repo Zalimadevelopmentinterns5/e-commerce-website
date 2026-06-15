@@ -4,6 +4,8 @@ dotenv.config()
 const app = express()
 const mongoose = require('mongoose')
 app.use(express.json())
+const path = require("path")
+app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 
 const userroute = require('./route/userroute')
 const productroute = require('./route/productroute')
