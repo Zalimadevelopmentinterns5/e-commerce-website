@@ -1,8 +1,12 @@
 const express = require('express')
 const dotenv = require('dotenv')
 dotenv.config()
-const app = express()
+const cors = require('cors')
 const mongoose = require('mongoose')
+
+const app = express()
+
+app.use(cors())
 app.use(express.json())
 const path = require("path")
 app.use("/uploads", express.static(path.join(__dirname, "uploads")))
