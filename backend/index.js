@@ -22,10 +22,13 @@ app.use('/api/order', orderroute)
 
 const PORT = process.env.PORT
 
-mongoose.connect('mongodb://localhost:27017/e-commerce')
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     console.log('connected to database')
-    app.listen(5000,() => {
-        console.log('http://localhost:5000')
+    app.listen(PORT, () => {
+        console.log(`http://localhost:${PORT}`)
     })
+})
+.catch((err) => {
+    console.log(err)
 })
