@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import Navbar from '../../components/Navbar'
-import { getProducts } from '../../services/api'
+import Navbar from '../components/Navbar'
+import { getProducts } from '../services/api'
 
 function ProductCard({ product }) {
   return (
