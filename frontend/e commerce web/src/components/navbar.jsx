@@ -5,7 +5,7 @@ export default function Navbar() {
 
       {/* Logo */}
       <div className="flex items-center gap-8">
-        <h1 className="text-2xl font-black text-black">Zaalima Shop</h1>
+        <h1 className="text-2xl font-black text-black">QuickKart</h1>
         <nav className="hidden md:flex items-center gap-6">
           <a href="/" className="text-black font-bold border-b-2
                                   border-black pb-1 text-sm">
