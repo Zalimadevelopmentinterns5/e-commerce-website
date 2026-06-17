@@ -142,9 +142,9 @@ export default function CustomerHomePage() {
       <footer className="flex justify-between items-center px-20 py-6
                          bg-gray-100 border-t border-gray-200">
         <div>
-          <p className="text-sm font-bold text-black">Zaalima Development</p>
+          <p className="text-sm font-bold text-black">QuickKart</p>
           <p className="text-xs text-gray-500 mt-1">
-            © 2024 Zaalima Development. All rights reserved.
+            © 2024 QuickKart. All rights reserved.
           </p>
         </div>
         <div className="flex gap-6">

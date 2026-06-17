@@ -143,10 +143,10 @@ export default function StorefrontPage() {
                          border-t border-gray-200">
         <div className="mb-4 md:mb-0">
           <p className="text-sm font-bold text-black">
-            Zaalima Development
+            QuickKart
           </p>
           <p className="text-xs text-gray-500 mt-1">
-            © 2024 Zaalima Development. All rights reserved.
+            © 2024 QuickKart. All rights reserved.
           </p>
         </div>
         <div className="flex gap-6">
