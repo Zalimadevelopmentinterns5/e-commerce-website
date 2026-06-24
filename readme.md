@@ -144,9 +144,3 @@ Future implementation will ensure complete tenant-level data isolation.
 ## Team
 
 Zaalima Development Interns
-
----
-
-## Repository
-
-https://github.com/Zalimadevelopmentinterns5/e-commerce-website
