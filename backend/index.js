@@ -14,11 +14,12 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")))
 const userroute = require('./route/userroute')
 const productroute = require('./route/productroute')
 const orderroute = require('./route/orderroute')
-
+const tenantsroute = require('./route/tenantsroutes')
 
 app.use('/api/user', userroute)
 app.use('/api/product', productroute)
 app.use('/api/order', orderroute)
+app.use('/api/tenants', tenantsroute)
 
 const PORT = process.env.PORT
 

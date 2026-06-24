@@ -16,23 +16,13 @@ function App() {
     <BrowserRouter>
       <div className="flex min-h-screen bg-gray-100">
 
-        {/* Sidebar */}
-        <Sidebar />
-
-        {/* Main Content */}
-        <div className="flex-1">
-
-          {/* Navbar */}
-          <Navbar />
-
-          {/* Page Content */}
           <div className="p-6">
 
             <Routes>
 
               {/* Dashboard */}
               <Route
-                path="/"
+                path="/storeowner"
                 element={<Dashboard />}
               />
 
@@ -67,7 +57,6 @@ function App() {
 
         </div>
 
-      </div>
     </BrowserRouter>
   );
 }
