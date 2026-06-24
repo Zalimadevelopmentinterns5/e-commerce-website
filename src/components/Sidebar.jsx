@@ -11,7 +11,7 @@ export default function Sidebar() {
   return (
     <div className="w-64 bg-white border-r min-h-screen p-4">
       <h1 className="text-2xl font-bold mb-8">
-        Zaalima
+        Quick kart 
       </h1>
 
       <div className="space-y-4">
