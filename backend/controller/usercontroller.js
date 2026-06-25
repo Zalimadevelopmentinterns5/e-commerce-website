@@ -1,5 +1,8 @@
 const User = require('../model/user')
-
+const jwt = require('jsonwebtoken')
+const createToken = (_id) => {
+    return jwt.sign({_id},process.env.JWT_SECRET,{expiresIn:'3d'})
+}
 exports.getalluser = async (req,res) => {
     try {
         const users = await User.find()
@@ -21,14 +24,17 @@ exports.getuserbyid = async (req,res) => {
 
 exports.createuser = async (req,res) => {
     const {username,email,password,image} = req.body
+    const token = createToken(req.body._id)
     try {
         const newUser = await User.create({
             username,
             email,
             password,
             image: req.file ? `/uploads/users/${req.file.filename}` : null
+            
         })
-        res.status(200).json(newUser)
+      
+        res.status(200).json({user:newUser,token})
     } catch (error) {
         res.status(500).json({error:error.message})
     }
@@ -63,11 +69,12 @@ exports.deleteuser = async (req,res) => {
 exports.loginuser = async (req,res) => {
     const {email,password} = req.body
     try {
-        const user = await User.findOne({email,password})
+        const user = await User.login({email,password})
         if(!user){
             return res.status(400).json({error:"Invalid email or password"})
         }
-        res.status(200).json(user)
+        const token = createToken(user._id)
+        res.status(200).json({user,token})
     }
     catch (error) {
         res.status(500).json({error:error.message})

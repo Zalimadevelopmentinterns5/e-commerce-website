@@ -64,7 +64,7 @@ export default function CustomerHomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
 
       {/* Hero */}
       <section className="relative w-full h-[500px] flex items-center
@@ -160,4 +160,5 @@ export default function CustomerHomePage() {
     </div>
   )
 }
-}
+
+

@@ -65,7 +65,6 @@ function App() {
 
         </div>
 
-    </BrowserRouter>
       <Routes>
          {/* CUSTOMER ROUTES — no sidebar, just navbar */}
         <Route path="/" element={<CustomerHomePage />} />
@@ -97,6 +96,7 @@ function App() {
        />
         </Routes>
       </BrowserRouter>
+    
     </CartProvider>
   );
 }

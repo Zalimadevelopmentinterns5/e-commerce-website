@@ -1,9 +1,11 @@
-const tenantsModel = require("../models/tenantsmodel");
+const tenantsModel = require("../model/tenants");
+
 
 exports.getAllTenants = async (req, res) => {
     try {
         const tenants = await tenantsModel.find();
         res.status(200).json(tenants);
+        
     }
     catch (error) {
         res.status(500).json({ error: error.message });
