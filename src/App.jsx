@@ -8,6 +8,8 @@ import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
+import CustomerHomePage from './pages/CustomerHomePage'
+import StorefrontPage from './pages/StorefrontPage'
 
 import CustomerHomePage from "./pages/CustomerHomePage";
 import StorefrontPage from "./pages/StorefrontPage";
