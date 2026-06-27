@@ -22,8 +22,7 @@ app.use('/api/order', orderroute)
 
 const PORT = process.env.PORT
 
-
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     console.log('connected to database')
     app.listen(PORT, () => {
