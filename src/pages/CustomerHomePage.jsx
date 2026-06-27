@@ -65,6 +65,7 @@ export default function CustomerHomePage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
+
       {/* Hero */}
       <section className="relative w-full h-[500px] flex items-center
                           px-20 overflow-hidden bg-[#131b2e] pt-16">
@@ -159,4 +160,5 @@ export default function CustomerHomePage() {
     </div>
   )
 }
-}
+
+
