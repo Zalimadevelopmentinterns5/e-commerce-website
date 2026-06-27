@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { getProducts } from '../services/api'
+import { useCart } from '../context/CartContext'
 
 function SkeletonCard() {
   return (
@@ -19,7 +20,7 @@ function SkeletonCard() {
   )
 }
 
-function ProductCard({ product }) {
+function ProductCard({ product, onAddToCart }) {
   return (
     <div className="group bg-white border border-gray-200 rounded-xl
                     overflow-hidden shadow-sm hover:shadow-md
@@ -34,10 +35,16 @@ function ProductCard({ product }) {
         <div className="absolute inset-0 bg-black/40 opacity-0
                         group-hover:opacity-100 transition-opacity
                         flex items-center justify-center">
-          <button className="bg-white text-black px-5 py-2 rounded-full
-                             text-sm font-semibold shadow-xl translate-y-4
-                             group-hover:translate-y-0 transition-transform">
-            Add to Cart
+         <button
+            onClick={(e) => {
+              e.preventDefault()
+              onAddToCart(product)
+            }}
+            className="bg-white text-black px-5 py-2 rounded-full
+                       text-sm font-semibold shadow-xl translate-y-4
+                       group-hover:translate-y-0 transition-transform"
+          >
+                  Add to Cart
           </button>
         </div>
       </div>
@@ -54,12 +61,18 @@ function ProductCard({ product }) {
         {product.discountprice && (
           <p className="text-xs text-green-600 font-medium mt-1">
             ₹{product.discountprice} after discount
-          </p>
+         </p>
         )}
         <p className="text-xs text-gray-400 mt-1">{product.category}</p>
-        <button className="mt-3 w-full bg-indigo-600 text-white
-                           py-2 rounded-lg text-sm font-semibold
-                           hover:bg-indigo-500 transition-colors">
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            onAddToCart(product)
+          }}
+          className="mt-3 w-full bg-indigo-600 text-white
+                     py-2 rounded-lg text-sm font-semibold
+                     hover:bg-indigo-500 transition-colors"
+        >
           Add to Cart
         </button>
       </div>
@@ -70,6 +83,7 @@ function ProductCard({ product }) {
 export default function StorefrontPage() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
+  const { addToCart } = useCart()
 
   useEffect(() => {
     getProducts()
@@ -130,7 +144,7 @@ export default function StorefrontPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2
                           lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {products.map(product => (
-              <ProductCard key={product._id} product={product} />
+              <ProductCard key={product._id} product={product} onAddToCart={addToCart} />
             ))}
           </div>
         )}
