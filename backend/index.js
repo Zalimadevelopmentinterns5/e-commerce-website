@@ -23,10 +23,14 @@ app.use('/api/tenants', tenantsroute)
 
 const PORT = process.env.PORT
 
-mongoose.connect(process.env.MONGODBURI)
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {
     console.log('connected to database')
-    app.listen(5000,() => {
-        console.log('http://localhost:5000')
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`)
     })
+})
+.catch((err) => {
+    console.error('MongoDB connection error:', err)
+    process.exit(1)
 })
