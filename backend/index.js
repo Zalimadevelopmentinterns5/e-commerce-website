@@ -23,7 +23,7 @@ app.use('/api/tenants', tenantsroute)
 
 const PORT = process.env.PORT
 
-mongoose.connect('mongodb://localhost:27017/e-commerce')
+mongoose.connect(process.env.MONGODBURI)
 .then(() => {
     console.log('connected to database')
     app.listen(5000,() => {
