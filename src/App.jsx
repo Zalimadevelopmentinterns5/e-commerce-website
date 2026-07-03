@@ -8,8 +8,7 @@ import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
-import CustomerHomePage from './pages/CustomerHomePage'
-import StorefrontPage from './pages/StorefrontPage'
+import NotFound from "./pages/NotFound";
 
 import CustomerHomePage from "./pages/CustomerHomePage";
 import StorefrontPage from "./pages/StorefrontPage";
@@ -31,18 +30,16 @@ function App() {
       <CartProvider>
         <BrowserRouter>
           <Routes>
-            {/* CUSTOMER ROUTES — no sidebar, just navbar */}
             <Route path="/" element={<CustomerHomePage />} />
             <Route path="/storefront" element={<StorefrontPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
 
-            {/* AUTH ROUTES */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="*" element={<NotFound />} />
 
-            {/* VENDOR/ADMIN DASHBOARD ROUTES — with sidebar layout */}
             <Route
               path="/dashboard/*"
               element={
@@ -67,7 +64,6 @@ function App() {
               }
             />
 
-            {/* SUPER ADMIN ROUTES — same layout, separate role-gated dashboard */}
             <Route
               path="/super-admin/*"
               element={

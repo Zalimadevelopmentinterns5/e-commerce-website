@@ -21,12 +21,11 @@ export function CartProvider({ children }) {
 
   const updateQty = (id, delta) => {
     setCart(prev =>
-      prev
-        .map(item =>
-          item._id === id
-            ? { ...item, qty: Math.max(1, item.qty + delta) }
-            : item
-        )
+      prev.map(item =>
+        item._id === id
+          ? { ...item, qty: Math.max(1, item.qty + delta) }
+          : item
+      )
     )
   }
 

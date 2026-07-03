@@ -1,126 +1,111 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-
-const INITIAL_CART = [
-  {
-    id: 1,
-    name: "Precision Watch S1",
-    price: 129.99,
-    qty: 1,
-    img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200",
-  },
-  {
-    id: 2,
-    name: "Acoustic Pro Max",
-    price: 249.99,
-    qty: 1,
-    img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=200",
-  },
-]
+import { useCart } from "../context/CartContext";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { Trash2, ShoppingBag } from "lucide-react";
 
 export default function CartPage() {
-  const [cart, setCart] = useState(INITIAL_CART)
+  const { cart, removeFromCart, clearCart } = useCart();
+  const navigate = useNavigate();
 
-  const updateQty = (id, delta) => {
-    setCart(prev =>
-      prev.map(item =>
-        item.id === id
-          ? { ...item, qty: Math.max(1, item.qty + delta) }
-          : item
-      )
-    )
+  const total = cart.reduce((sum, item) => sum + item.price * item.qty, 1);
+
+  if (cart.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="flex flex-col items-center justify-center h-[80vh] gap-4">
+          <ShoppingBag size={64} className="text-gray-300" />
+          <h2 className="text-2xl font-bold text-gray-400">Your cart is empty</h2>
+          <Link
+            to="/storefront"
+            className="bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-indigo-500"
+          >
+            Continue Shopping
+          </Link>
+        </div>
+      </div>
+    );
   }
-
-  const removeItem = (id) => {
-    setCart(prev => prev.filter(item => item.id !== id))
-  }
-
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0)
 
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
+      <div className="max-w-5xl mx-auto px-6 pt-28 pb-16">
+        <h1 className="text-3xl font-bold mb-8">Your Cart</h1>
 
-      <main className="pt-24 pb-16 px-8 max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold text-black mb-8">Your Cart</h1>
-
-        {cart.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-gray-400 text-lg mb-4">Your cart is empty.</p>
-            <Link to="/storefront" className="text-indigo-600 font-semibold
-                                              hover:underline">
-              Continue Shopping →
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className="space-y-4 mb-8">
-              {cart.map(item => (
-                <div key={item.id} className="flex gap-4 p-4 bg-white
-                                              border border-gray-200
-                                              rounded-xl items-center">
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="w-20 h-20 rounded-lg object-cover"
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-black mb-1">
-                      {item.name}
-                    </h4>
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center border
-                                      border-gray-200 rounded-md overflow-hidden">
-                        <button
-                          onClick={() => updateQty(item.id, -1)}
-                          className="px-3 py-1 hover:bg-gray-100"
-                        >
-                          −
-                        </button>
-                        <span className="px-3 py-1 border-x
-                                         border-gray-200 text-sm">
-                          {item.qty}
-                        </span>
-                        <button
-                          onClick={() => updateQty(item.id, 1)}
-                          className="px-3 py-1 hover:bg-gray-100"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        onClick={() => removeItem(item.id)}
-                        className="text-red-500 text-sm hover:underline"
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  </div>
-                  <span className="font-semibold text-black">
-                    ${(item.price * item.qty).toFixed(2)}
-                  </span>
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Items */}
+          <div className="flex-1 space-y-4">
+            {cart.map((item) => (
+              <div
+                key={item._id}
+                className="bg-white rounded-xl p-4 flex gap-4 shadow-sm border border-gray-100"
+              >
+                <img
+                  src={item.image || "https://via.placeholder.com/100"}
+                  alt={item.name}
+                  className="w-24 h-24 object-cover rounded-lg bg-gray-100"
+                />
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-800">{item.name}</h3>
+                  <p className="text-sm text-gray-400 mt-1">{item.category}</p>
+                  <p className="text-indigo-600 font-bold mt-2">₹{item.price}</p>
                 </div>
-              ))}
-            </div>
-
-            <div className="bg-white border border-gray-200 rounded-xl
-                            p-6 flex justify-between items-center">
-              <div>
-                <p className="text-sm text-gray-500">Subtotal</p>
-                <p className="text-2xl font-bold text-black">
-                  ${subtotal.toFixed(2)}
-                </p>
+                <button
+                  onClick={() => removeFromCart(item._id)}
+                  className="text-gray-400 hover:text-red-500 transition-colors self-start"
+                >
+                  <Trash2 size={18} />
+                </button>
               </div>
-              <button className="bg-indigo-600 text-white px-8 py-3
-                                 rounded-lg font-semibold
-                                 hover:bg-indigo-500 transition-colors">
+            ))}
+
+            <button
+              onClick={clearCart}
+              className="text-sm text-red-500 hover:underline mt-2"
+            >
+              Clear all items
+            </button>
+          </div>
+
+          {/* Summary */}
+          <div className="w-full lg:w-80">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+
+              <div className="space-y-3 mb-6">
+                {cart.map((item) => (
+                  <div key={item._id} className="flex justify-between text-sm">
+                    <span className="text-gray-500 truncate max-w-[160px]">
+                      {item.name}
+                    </span>
+                    <span className="font-medium">₹{item.price}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="border-t pt-4 flex justify-between font-bold text-lg">
+                <span>Total</span>
+                <span className="text-indigo-600">₹{total}</span>
+              </div>
+
+              <button
+                onClick={() => navigate("/checkout")}
+                className="mt-6 w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-500 transition-colors"
+              >
                 Proceed to Checkout
               </button>
+
+              <Link
+                to="/storefront"
+                className="block text-center mt-3 text-sm text-gray-400 hover:text-indigo-600"
+              >
+                ← Continue Shopping
+              </Link>
             </div>
-          </>
-        )}
-      </main>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
