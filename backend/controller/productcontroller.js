@@ -12,7 +12,7 @@ exports.getproductbyid = async (req,res) => {
     const {id} = req.params
     try {
      const product = await Product.findById(id)
-   res.status(201).json(product)
+   res.status(200).json(product)
     } catch (error) {
          res.status(500).json({error:error.message})
     }
@@ -40,7 +40,6 @@ exports.createproduct = async (req,res) => {
 
 exports.productupdate = async (req,res) => {
 const {id} = req.params
-const {name,description,price,category,image,discountprice} = req.body  
     try {
         const product = await Product.findByIdAndUpdate(id,req.body,{new:true})
         res.status(200).json(product)
