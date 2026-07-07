@@ -20,9 +20,9 @@ exports.getorderbyid = async (req,res) => {
 }
 
 exports.createorder =async (req,res) => {
-    const {userId,products,Price,status} =req.body 
+    const {userId,products,price,status} =req.body 
     try {
-        const order = await Order.create({userId,products,Price,status})
+        const order = await Order.create({userId,products,price,status})
         res.status(200).json(order)
     } catch (error) {
         res.status(500).json({error:error.message})
@@ -30,7 +30,6 @@ exports.createorder =async (req,res) => {
 }
 exports.orderupdate = async (req,res) => {
 const {id} = req.params
-const {userId,products,Price,status} = req.body  
     try {
         const order = await Order.findByIdAndUpdate(id, req.body, { new: true })
         res.status(200).json(order)

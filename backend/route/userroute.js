@@ -6,6 +6,6 @@ router.get('/', getalluser)
 router.get('/:id', getuserbyid)
 router.post('/', uploadUser.single('image'), createuser)
 router.put('/:id', userupdate)
-router.post('/',loginuser)
+router.post('/login',loginuser)
 router.delete('/:id', deleteuser)
 module.exports = router

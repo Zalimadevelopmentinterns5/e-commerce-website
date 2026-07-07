@@ -22,21 +22,24 @@ exports.getuserbyid = async (req,res) => {
     }
 }
 
-exports.createuser = async (req,res) => {
-    const {username,email,password,image} = req.body
+exports.createuser = async (req, res) => {
+    const { username, email, password } = req.body
     const token = createToken(req.body._id)
     try {
-        const newUser = await User.create({
+        const newUser = await User.signup(
             username,
             email,
             password,
-            image: req.file ? `/uploads/users/${req.file.filename}` : null
-            
+            req.file ? `/uploads/users/${req.file.filename}` : null
+        )
+        res.status(200).json({
+            user: newUser,
+            token
         })
-      
-        res.status(200).json({user:newUser,token})
     } catch (error) {
-        res.status(500).json({error:error.message})
+        res.status(500).json({
+            error: error.message
+        })
     }
 }
 

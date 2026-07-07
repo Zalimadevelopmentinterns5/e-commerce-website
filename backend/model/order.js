@@ -19,7 +19,7 @@ const orderSchema = new mongoose.Schema({
             }
         }
     ],
-    Price:{
+    price:{
         type:Number,
         required:true
     },
@@ -28,7 +28,8 @@ const orderSchema = new mongoose.Schema({
         required:true,
         default:'pending'
     }
-},{
+},
+{
     timestamps:true
 }
 )
