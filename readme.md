@@ -1,81 +1,121 @@
-# Multi-Tenant E-Commerce Platform (SaaS)
+# 🛒 Multi-Tenant E-Commerce Platform (SaaS)
 
-A scalable Multi-Tenant E-Commerce Platform designed to allow multiple vendors to manage their stores independently within a shared application. The platform provides product management, order management, user management, authentication, and role-based access control.
-
----
-
-## Project Overview
-
-This project enables multiple vendors (tenants) to operate their online stores using a single application while maintaining data isolation and security.
-
-### Key Objectives
-
-- Multi-tenant architecture
-- Vendor management
-- Product management
-- Order management
-- Secure authentication
-- Role-based access control
-- Scalable SaaS platform design
+A full-stack **Multi-Tenant E-Commerce Platform** built using the **MERN Stack** that enables multiple vendors (tenants) to manage their own online stores within a shared application. The platform provides secure authentication, product management, order processing, user management, role-based access control, and an intuitive admin dashboard, making it a scalable Software-as-a-Service (SaaS) solution.
 
 ---
 
-## Current Development Status
+# 📖 Project Overview
 
-### Backend Progress
+The Multi-Tenant E-Commerce Platform allows multiple vendors to independently manage their stores while sharing a common infrastructure. Each tenant has isolated access to products, orders, and customers, ensuring security and scalability.
 
-- Express.js server setup
-- MongoDB database integration
-- User CRUD APIs
-- Product CRUD APIs
-- Order CRUD APIs
-- File upload support using Multer
-- Authentication middleware implementation
-- Local image storage
-- API testing using Postman
-
-### Frontend Progress
-
-- React + Vite setup
-- Dashboard page
-- Products page
-- Analytics page
-- Settings page
-- Sidebar navigation
-- Navbar component
-- Routing using React Router
-- Frontend testing and debugging
-
-### In Progress
-
-- Multi-Tenant implementation
-- Role-based access control enhancement
-- Vendor management
-- Payment integration
-- Super Admin dashboard
-- Deployment
+The platform includes dedicated modules for authentication, product inventory, order processing, analytics, and store management.
 
 ---
 
-## Technology Stack
+# ✨ Features
 
-### Frontend
+## Authentication & Security
+
+- Secure User Registration and Login
+- JWT-based Authentication
+- Password Encryption using bcrypt
+- Protected Routes with Authentication Middleware
+- Role-Based Access Control
+
+## Product Management
+
+- Add New Products
+- Update Product Details
+- Delete Products
+- Product Image Upload
+- Product Listing and Search
+
+## Order Management
+
+- Place Orders
+- View Order History
+- Update Order Status
+- Manage Customer Orders
+
+## User Management
+
+- User Registration
+- User Profile Management
+- View and Manage Users
+
+## Dashboard
+
+- Admin Dashboard
+- Product Overview
+- Order Statistics
+- Analytics Dashboard
+- Responsive Navigation
+
+## Multi-Tenant Architecture
+
+- Independent Vendor (Tenant) Management
+- Tenant-specific Products
+- Tenant-specific Orders
+- Tenant Data Isolation
+- Shared SaaS Infrastructure
+
+---
+
+# 🛠️ Technology Stack
+
+## Frontend
 
 - React.js
+- Vite
+- React Router DOM
 - Tailwind CSS
+- Axios
 
-### Backend
+## Backend
 
 - Node.js
 - Express.js
 - MongoDB
 - Mongoose
+- JWT
+- bcryptjs
+- Multer
+- dotenv
+- CORS
 
 ---
 
-## API Endpoints
+# 📂 Project Structure
 
-### User APIs
+```
+e-commerce-website-main
+│
+├── backend
+│   ├── controller
+│   ├── middleware
+│   ├── model
+│   ├── route
+│   ├── uploads
+│   ├── index.js
+│   └── package.json
+│
+├── frontend
+│
+├── public
+├── src
+│   ├── components
+│   ├── pages
+│   ├── context
+│   └── assets
+│
+└── package.json
+```
+
+---
+
+# 🔌 REST API Endpoints
+
+## User APIs
 
 ```http
 GET    /api/user
@@ -85,7 +125,7 @@ PUT    /api/user/:id
 DELETE /api/user/:id
 ```
 
-### Product APIs
+## Product APIs
 
 ```http
 GET    /api/product
@@ -95,7 +135,7 @@ PUT    /api/product/:id
 DELETE /api/product/:id
 ```
 
-### Order APIs
+## Order APIs
 
 ```http
 GET    /api/order
@@ -107,40 +147,81 @@ DELETE /api/order/:id
 
 ---
 
-## Multi-Tenant Concept
+# 🔐 Authentication
 
-A Tenant represents an individual vendor or store using the platform.
+The application uses **JSON Web Tokens (JWT)** for secure authentication. Passwords are encrypted using **bcrypt**, and protected routes are secured through custom authentication middleware.
 
-```text
-Platform
-│
-├── Tenant A (Store A)
-├── Tenant B (Store B)
-└── Tenant C (Store C)
-```
+---
 
-Each tenant manages:
+# 📷 Image Upload
 
+Images are uploaded using **Multer** and stored locally inside the **uploads/** directory.
+
+---
+
+# 🗄️ Database
+
+MongoDB is used as the primary database.
+
+### Collections
+
+- Users
 - Products
 - Orders
-- Customers
-- Store Settings
-
-Future implementation will ensure complete tenant-level data isolation.
+- Tenants
 
 ---
 
-## Future Enhancements
+# 🏢 Multi-Tenant Architecture
 
-- Complete Multi-Tenant Architecture
-- Super Admin Dashboard
-- Vendor Onboarding
-- Payment Gateway Integration
-- Analytics Dashboard Enhancement
-- Deployment
+```
+                    Multi-Tenant Platform
+                           │
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+    Tenant A           Tenant B          Tenant C
+        │                  │                  │
+   Products           Products          Products
+   Orders             Orders            Orders
+   Customers          Customers         Customers
+```
+
+Each tenant operates independently while sharing the same application infrastructure. The platform ensures secure tenant-level data separation and efficient resource utilization.
 
 ---
 
-## Team
+# 📊 Project Highlights
 
-Zaalima Development Interns
+- Full MERN Stack Application
+- RESTful API Architecture
+- Secure JWT Authentication
+- Role-Based Authorization
+- Multi-Tenant SaaS Design
+- CRUD Operations for Users, Products, and Orders
+- Local Image Upload using Multer
+- Responsive Admin Dashboard
+- Analytics and Reporting
+- Modular Backend Architecture
+- Clean and Scalable Code Structure
+
+---
+
+# 👥 Team
+
+**Zaalima Development Interns**
+
+- Backend Development
+- Frontend Development
+- Database Design
+- API Development
+- Authentication & Authorization
+- UI/UX Development
+- Testing & Debugging
+
+---
+
+# 📄 License
+
+This project was developed as part of an internship and educational learning experience. It is intended for demonstration, learning, and portfolio purposes.
+
+
