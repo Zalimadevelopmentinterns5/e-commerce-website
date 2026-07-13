@@ -1,10 +1,10 @@
-# 🛒 Multi-Tenant E-Commerce Platform (SaaS)
+# Multi-Tenant E-Commerce Platform (SaaS)
 
 A full-stack **Multi-Tenant E-Commerce Platform** built using the **MERN Stack** that enables multiple vendors (tenants) to manage their own online stores within a shared application. The platform provides secure authentication, product management, order processing, user management, role-based access control, and an intuitive admin dashboard, making it a scalable Software-as-a-Service (SaaS) solution.
 
 ---
 
-# 📖 Project Overview
+# Project Overview
 
 The Multi-Tenant E-Commerce Platform allows multiple vendors to independently manage their stores while sharing a common infrastructure. Each tenant has isolated access to products, orders, and customers, ensuring security and scalability.
 
@@ -12,7 +12,7 @@ The platform includes dedicated modules for authentication, product inventory, o
 
 ---
 
-# ✨ Features
+# Features
 
 ## Authentication & Security
 
@@ -61,7 +61,7 @@ The platform includes dedicated modules for authentication, product inventory, o
 
 ---
 
-# 🛠️ Technology Stack
+# Technology Stack
 
 ## Frontend
 
@@ -85,7 +85,7 @@ The platform includes dedicated modules for authentication, product inventory, o
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```
 e-commerce-website-main
@@ -113,7 +113,7 @@ e-commerce-website-main
 
 ---
 
-# 🔌 REST API Endpoints
+# REST API Endpoints
 
 ## User APIs
 
@@ -147,19 +147,19 @@ DELETE /api/order/:id
 
 ---
 
-# 🔐 Authentication
+# Authentication
 
 The application uses **JSON Web Tokens (JWT)** for secure authentication. Passwords are encrypted using **bcrypt**, and protected routes are secured through custom authentication middleware.
 
 ---
 
-# 📷 Image Upload
+# Image Upload
 
 Images are uploaded using **Multer** and stored locally inside the **uploads/** directory.
 
 ---
 
-# 🗄️ Database
+# Database
 
 MongoDB is used as the primary database.
 
@@ -172,7 +172,7 @@ MongoDB is used as the primary database.
 
 ---
 
-# 🏢 Multi-Tenant Architecture
+# Multi-Tenant Architecture
 
 ```
                     Multi-Tenant Platform
@@ -190,7 +190,7 @@ Each tenant operates independently while sharing the same application infrastruc
 
 ---
 
-# 📊 Project Highlights
+# Project Highlights
 
 - Full MERN Stack Application
 - RESTful API Architecture
@@ -206,7 +206,7 @@ Each tenant operates independently while sharing the same application infrastruc
 
 ---
 
-# 👥 Team
+# Team
 
 **Zaalima Development Interns**
 
@@ -217,11 +217,5 @@ Each tenant operates independently while sharing the same application infrastruc
 - Authentication & Authorization
 - UI/UX Development
 - Testing & Debugging
-
----
-
-# 📄 License
-
-This project was developed as part of an internship and educational learning experience. It is intended for demonstration, learning, and portfolio purposes.
 
 
